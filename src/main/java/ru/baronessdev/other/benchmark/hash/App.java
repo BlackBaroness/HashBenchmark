@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class App {
 
     @BenchmarkMode(Mode.AverageTime)
-    @Warmup(iterations = 0)
+    @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
     @SuppressWarnings("all")
@@ -22,7 +22,7 @@ public class App {
     }
 
     @BenchmarkMode(Mode.AverageTime)
-    @Warmup(iterations = 0)
+    @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
     @SuppressWarnings("all")
@@ -31,7 +31,7 @@ public class App {
     }
 
     @BenchmarkMode(Mode.AverageTime)
-    @Warmup(iterations = 0)
+    @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
     @SuppressWarnings("all")
@@ -50,7 +50,7 @@ public class App {
     }
 
     @BenchmarkMode(Mode.AverageTime)
-    @Warmup(iterations = 0)
+    @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
     @SuppressWarnings("all")
@@ -59,7 +59,7 @@ public class App {
     }
 
     @BenchmarkMode(Mode.AverageTime)
-    @Warmup(iterations = 0)
+    @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
     @SuppressWarnings("all")
@@ -68,7 +68,7 @@ public class App {
     }
 
     @BenchmarkMode(Mode.AverageTime)
-    @Warmup(iterations = 0)
+    @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
     @SuppressWarnings("all")
@@ -77,7 +77,7 @@ public class App {
     }
 
     @BenchmarkMode(Mode.AverageTime)
-    @Warmup(iterations = 0)
+    @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
     @SuppressWarnings("all")
