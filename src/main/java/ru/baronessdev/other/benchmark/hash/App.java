@@ -104,21 +104,6 @@ public class App {
         }
     }
 
-    @BenchmarkMode(Mode.AverageTime)
-    @Warmup(iterations = 1)
-    @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    @Benchmark
-    public void BLAKE224() {
-        try {
-            MessageDigest mdSH = MessageDigest.getInstance("BLAKE224", new JCAProvider());
-            mdSH.update("123abc".getBytes());
-            new String(
-                    new String(mdSH.digest(), StandardCharsets.UTF_16).getBytes(StandardCharsets.UTF_8),
-                    StandardCharsets.UTF_8
-            );
-        } catch (Exception ignored) {
-        }
-    }
 
     @BenchmarkMode(Mode.AverageTime)
     @Warmup(iterations = 1)
@@ -127,22 +112,6 @@ public class App {
     public void BLAKE256() {
         try {
             MessageDigest mdSH = MessageDigest.getInstance("BLAKE256", new JCAProvider());
-            mdSH.update("123abc".getBytes());
-            new String(
-                    new String(mdSH.digest(), StandardCharsets.UTF_16).getBytes(StandardCharsets.UTF_8),
-                    StandardCharsets.UTF_8
-            );
-        } catch (Exception ignored) {
-        }
-    }
-
-    @BenchmarkMode(Mode.AverageTime)
-    @Warmup(iterations = 1)
-    @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    @Benchmark
-    public void BLAKE384() {
-        try {
-            MessageDigest mdSH = MessageDigest.getInstance("BLAKE384", new JCAProvider());
             mdSH.update("123abc".getBytes());
             new String(
                     new String(mdSH.digest(), StandardCharsets.UTF_16).getBytes(StandardCharsets.UTF_8),
@@ -169,4 +138,24 @@ public class App {
     }
 
 
+
+
+
+    @BenchmarkMode(Mode.AverageTime)
+    @Warmup(iterations = 1)
+    @OutputTimeUnit(TimeUnit.NANOSECONDS)
+    @Benchmark
+    public void CUBEHASH512() {
+        try {
+            MessageDigest mdSH = MessageDigest.getInstance("CubeHash512", new JCAProvider());
+            mdSH.update("123abc".getBytes());
+
+            // here is some charset problems so using UTF-16 and converting to UTF-8
+            new String(
+                    new String(mdSH.digest(), StandardCharsets.UTF_16).getBytes(StandardCharsets.UTF_8),
+                    StandardCharsets.UTF_8
+            );
+        } catch (Exception ignored) {
+        }
+    }
 }
