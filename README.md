@@ -1,25 +1,16 @@
 Benchmark for hashing algorithms in Java
 
 ## Benchmarks
-- MD5 (Google Guava)
-- SHA1 (Google Guava)
-- SHA224
-- SHA256 (Google Guava)
-- SHA384 (Google Guava)
-- SHA512 (Google Guava)
-- BCrypt (Favre`s implementation)
-- BLAKE3 (sken77`s implementation)
-- BLAKE256 (Saphir Hash)
-- BLAKE512 (Saphir Hash)
-- CubeHash512 (Saphir Hash)
-- Whirlpool (Saphir Hash)
+- MD (2, 4, 5)
+- SHA\SHA2 (0, 1, 224, 256, 384, 512)
+- SHA3 (224, 256, 384, 512)
+- Tiger (1, 2, 128, 160)
+- BLAKE2B (160, 256, 384, 512)
+- Whirlpool (0, 1, 2)
 
 ## Libraries and tools
 - [JHM](https://github.com/openjdk/jmh)
-- [Google Guava](https://github.com/google/guava)
-- [Favre`s Bcrypt implementation](https://github.com/patrickfav/bcrypt)
-- [sken77`s BLAKE3 implementation](https://github.com/sken77/BLAKE3jni)
-- [Saphir Hash hashing library](https://github.com/sfuhrm/saphir-hash)
+- [Hash Algorithms](https://github.com/norkator/cryptography)
 
 ## Run it by yourself
 - Clone that repository
