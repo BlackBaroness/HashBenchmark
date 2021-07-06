@@ -43,6 +43,11 @@
             <artifactId>bcrypt</artifactId>
             <version>0.9.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.lktk</groupId>
+            <artifactId>blake3jni</artifactId>
+            <version>0.2.2</version>
+        </dependency>
     </dependencies>
 
     <build>

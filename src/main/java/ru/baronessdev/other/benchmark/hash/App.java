@@ -2,6 +2,7 @@ package ru.baronessdev.other.benchmark.hash;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.google.common.hash.Hashing;
+import io.lktk.NativeBLAKE3;
 import org.openjdk.jmh.annotations.*;
 
 import java.math.BigInteger;
@@ -10,13 +11,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings("all")
 public class App {
 
     @BenchmarkMode(Mode.AverageTime)
     @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
-    @SuppressWarnings("all")
     public void MD5() {
         Hashing.md5().hashString("123abc", StandardCharsets.UTF_8).toString();
     }
@@ -25,7 +26,6 @@ public class App {
     @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
-    @SuppressWarnings("all")
     public void SHA1() {
         Hashing.sha1().hashString("123abc", StandardCharsets.UTF_8).toString();
     }
@@ -34,7 +34,6 @@ public class App {
     @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
-    @SuppressWarnings("all")
     public void SHA224() {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-224");
@@ -53,7 +52,6 @@ public class App {
     @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
-    @SuppressWarnings("all")
     public void SHA256() {
         Hashing.sha256().hashString("123abc", StandardCharsets.UTF_8).toString();
     }
@@ -62,7 +60,6 @@ public class App {
     @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
-    @SuppressWarnings("all")
     public void SHA384() {
         Hashing.sha384().hashString("123abc", StandardCharsets.UTF_8).toString();
     }
@@ -71,7 +68,6 @@ public class App {
     @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
-    @SuppressWarnings("all")
     public void SHA512() {
         Hashing.sha512().hashString("123abc", StandardCharsets.UTF_8).toString();
     }
@@ -80,8 +76,26 @@ public class App {
     @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
-    @SuppressWarnings("all")
     public void BCrypt() {
         BCrypt.withDefaults().hashToString(12, "123abc".toCharArray());
+    }
+
+    @BenchmarkMode(Mode.AverageTime)
+    @Warmup(iterations = 1)
+    @OutputTimeUnit(TimeUnit.NANOSECONDS)
+    @Benchmark
+    public void BLAKE3() {
+        try {
+            // here is some charset problems so using UTF-16 and converting to UTF-8
+            NativeBLAKE3 blake3 = new NativeBLAKE3();
+            blake3.initDefault();
+            blake3.update("123abc".getBytes(StandardCharsets.UTF_16));
+
+            new String(
+                    new String(blake3.getOutput(), StandardCharsets.UTF_16).getBytes(StandardCharsets.UTF_8),
+                    StandardCharsets.UTF_8
+            );
+        } catch (Exception ignored) {
+        }
     }
 }
