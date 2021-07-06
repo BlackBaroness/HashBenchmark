@@ -2,6 +2,7 @@ package ru.baronessdev.other.benchmark.hash;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.google.common.hash.Hashing;
+import fr.cryptohash.JCAProvider;
 import io.lktk.NativeBLAKE3;
 import org.openjdk.jmh.annotations.*;
 
@@ -80,6 +81,10 @@ public class App {
         BCrypt.withDefaults().hashToString(12, "123abc".toCharArray());
     }
 
+
+
+    /*     here is some charset problems with BLAKE so using UTF-16 and converting to UTF-8    */
+
     @BenchmarkMode(Mode.AverageTime)
     @Warmup(iterations = 1)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
@@ -98,4 +103,70 @@ public class App {
         } catch (Exception ignored) {
         }
     }
+
+    @BenchmarkMode(Mode.AverageTime)
+    @Warmup(iterations = 1)
+    @OutputTimeUnit(TimeUnit.NANOSECONDS)
+    @Benchmark
+    public void BLAKE224() {
+        try {
+            MessageDigest mdSH = MessageDigest.getInstance("BLAKE224", new JCAProvider());
+            mdSH.update("123abc".getBytes());
+            new String(
+                    new String(mdSH.digest(), StandardCharsets.UTF_16).getBytes(StandardCharsets.UTF_8),
+                    StandardCharsets.UTF_8
+            );
+        } catch (Exception ignored) {
+        }
+    }
+
+    @BenchmarkMode(Mode.AverageTime)
+    @Warmup(iterations = 1)
+    @OutputTimeUnit(TimeUnit.NANOSECONDS)
+    @Benchmark
+    public void BLAKE256() {
+        try {
+            MessageDigest mdSH = MessageDigest.getInstance("BLAKE256", new JCAProvider());
+            mdSH.update("123abc".getBytes());
+            new String(
+                    new String(mdSH.digest(), StandardCharsets.UTF_16).getBytes(StandardCharsets.UTF_8),
+                    StandardCharsets.UTF_8
+            );
+        } catch (Exception ignored) {
+        }
+    }
+
+    @BenchmarkMode(Mode.AverageTime)
+    @Warmup(iterations = 1)
+    @OutputTimeUnit(TimeUnit.NANOSECONDS)
+    @Benchmark
+    public void BLAKE384() {
+        try {
+            MessageDigest mdSH = MessageDigest.getInstance("BLAKE384", new JCAProvider());
+            mdSH.update("123abc".getBytes());
+            new String(
+                    new String(mdSH.digest(), StandardCharsets.UTF_16).getBytes(StandardCharsets.UTF_8),
+                    StandardCharsets.UTF_8
+            );
+        } catch (Exception ignored) {
+        }
+    }
+
+    @BenchmarkMode(Mode.AverageTime)
+    @Warmup(iterations = 1)
+    @OutputTimeUnit(TimeUnit.NANOSECONDS)
+    @Benchmark
+    public void BLAKE512() {
+        try {
+            MessageDigest mdSH = MessageDigest.getInstance("BLAKE512", new JCAProvider());
+            mdSH.update("123abc".getBytes());
+            new String(
+                    new String(mdSH.digest(), StandardCharsets.UTF_16).getBytes(StandardCharsets.UTF_8),
+                    StandardCharsets.UTF_8
+            );
+        } catch (Exception ignored) {
+        }
+    }
+
+
 }
