@@ -37,6 +37,4 @@ public class BLAKE2B {
     public void BLAKE2B_512() {
         ru.baronessdev.other.benchmark.hash.utils.hashes.blake2b.Blake2b.blake2b512(Constants.SAMPLE);
     }
-
-
 }

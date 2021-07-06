@@ -6,7 +6,7 @@ import org.openjdk.jmh.annotations.*;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
-@SuppressWarnings({"UnstableApiUsage", "ResultOfMethodCallIgnored"})
+@SuppressWarnings({"UnstableApiUsage", "ResultOfMethodCallIgnored", "deprecation"})
 public class MD {
 
     @BenchmarkMode(Mode.AverageTime)
