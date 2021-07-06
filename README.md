@@ -9,10 +9,10 @@ Benchmark for hashing algorithms in Java
 - SHA512 (Google Guava)
 - BCrypt (Favre`s implementation)
 - BLAKE3 (sken77`s implementation)
-- BLAKE224 (Saphir Hash)
 - BLAKE256 (Saphir Hash)
-- BLAKE384 (Saphir Hash)
 - BLAKE512 (Saphir Hash)
+- CubeHash512 (Saphir Hash)
+- Whirlpool (Saphir Hash)
 
 ## Libraries and tools
 - [JHM](https://github.com/openjdk/jmh)
