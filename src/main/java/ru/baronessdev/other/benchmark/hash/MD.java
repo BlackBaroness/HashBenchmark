@@ -1,9 +1,12 @@
 package ru.baronessdev.other.benchmark.hash;
 
+import com.google.common.hash.Hashing;
 import org.openjdk.jmh.annotations.*;
 
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings({"UnstableApiUsage", "ResultOfMethodCallIgnored"})
 public class MD {
 
     @BenchmarkMode(Mode.AverageTime)
@@ -27,6 +30,6 @@ public class MD {
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
     public void MD5() {
-        ru.baronessdev.other.benchmark.hash.utils.hashes.md.MD.md5(Constants.SAMPLE);
+        Hashing.md5().hashString(Constants.SAMPLE, StandardCharsets.UTF_8);
     }
 }

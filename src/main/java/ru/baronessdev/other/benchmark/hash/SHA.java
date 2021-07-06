@@ -1,13 +1,12 @@
 package ru.baronessdev.other.benchmark.hash;
 
+import com.google.common.hash.Hashing;
 import org.openjdk.jmh.annotations.*;
 
-import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings({"UnstableApiUsage", "ResultOfMethodCallIgnored"})
 public class SHA {
 
     @BenchmarkMode(Mode.AverageTime)
@@ -23,7 +22,7 @@ public class SHA {
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
     public void SHA1() {
-        ru.baronessdev.other.benchmark.hash.utils.hashes.sha.SHA.sha1(Constants.SAMPLE);
+        Hashing.sha1().hashString(Constants.SAMPLE, StandardCharsets.UTF_8);
     }
 
     @BenchmarkMode(Mode.AverageTime)
@@ -39,7 +38,7 @@ public class SHA {
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
     public void SHA256() {
-        ru.baronessdev.other.benchmark.hash.utils.hashes.sha.SHA.sha256(Constants.SAMPLE);
+        Hashing.sha256().hashString(Constants.SAMPLE, StandardCharsets.UTF_8);
     }
 
     @BenchmarkMode(Mode.AverageTime)
@@ -55,6 +54,8 @@ public class SHA {
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     @Benchmark
     public void SHA512() {
-        ru.baronessdev.other.benchmark.hash.utils.hashes.sha.SHA.sha512(Constants.SAMPLE);
+        Hashing.sha512().hashString(Constants.SAMPLE, StandardCharsets.UTF_8);
     }
+
+
 }
